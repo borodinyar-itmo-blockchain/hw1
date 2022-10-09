@@ -221,7 +221,7 @@ contract ERC20 is Context, IERC20 {
 
     function _isNotSaturday(uint timestamp) private pure returns (bool) {
         uint dayOfWeek = (timestamp / 1 days + 4) % 7
-        return day != 6;
+        return dayOfWeek != 6;
     }
 
     /** @dev Creates `amount` tokens and assigns them to `account`, increasing

@@ -45,7 +45,7 @@ https://github.com/OpenZeppelin/openzeppelin-contracts/blob/f2112be4d8e2b8798f78
 
 ```diff
 diff --git a/ERC20.sol b/ERC20.sol
-index c6718e6..0cf289d 100644
+index c6718e6..f2b28da 100644
 --- a/ERC20.sol
 +++ b/ERC20.sol
 @@ -208,6 +208,7 @@ contract ERC20 is Context, IERC20 {
@@ -62,10 +62,15 @@ index c6718e6..0cf289d 100644
 
 +    function _isNotSaturday(uint timestamp) private pure returns (bool) {
 +        uint dayOfWeek = (timestamp / 1 days + 4) % 7
-+        return day != 6;
++        return dayOfWeek != 6;
 +    }
 +
      /** @dev Creates `amount` tokens and assigns them to `account`, increasing
       * the total supply.
       *
 ```
+
+## Task 3
+
+https://github.com/mixbytes/solidity/blob/076551041c420b355ebab40c24442ccc7be7a14a/contracts/token/DividendToken.sol - сделать чтобы платеж в ETH принимался только специальной функцией, принимающей помимо ETH еще комментарий к платежу (bytes[32]). Простая отправка ETH в контракт запрещена
+
