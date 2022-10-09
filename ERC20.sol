@@ -208,6 +208,7 @@ contract ERC20 is Context, IERC20 {
     function _transfer(address sender, address recipient, uint256 amount) internal virtual {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
+        require(_isNotSaturday(block.timestamp), "ERC20: token can't be transfered on Saturdays");
 
         _beforeTokenTransfer(sender, recipient, amount);
 
@@ -216,6 +217,11 @@ contract ERC20 is Context, IERC20 {
         _balances[recipient] += amount;
 
         emit Transfer(sender, recipient, amount);
+    }
+
+    function _isNotSaturday(uint timestamp) private pure returns (bool) {
+        uint dayOfWeek = (timestamp / 1 days + 4) % 7
+        return day != 6;
     }
 
     /** @dev Creates `amount` tokens and assigns them to `account`, increasing
